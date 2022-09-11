@@ -1,9 +1,11 @@
 # CSAW2022-OSINT
 
-Here is my solution for the one OSINT question in CSAW 2022 (categorised as forensics).
+Here is my solution for the one OSINT question in CSAW 2022 (where it was classified under forensics).
 
 ## PROBLEM
-We are provided the following question:
+We are provided the following challenge:
+
+<img src="https://github.com/adalum/CSAW2022-OSINT/blob/main/images/challenge.png"  width="300" height="300">
 
 Two things of note:
 1. Find the twitter account
@@ -20,6 +22,8 @@ Please enter your answer:
 ### A. Twitter
 We can find the user's twitter account: www.twitter.com/Darkroom8109
 
+<img src="https://github.com/adalum/CSAW2022-OSINT/blob/main/images/twitter.png"  width="300" height="300">
+
 Where it states he joined in August 2022.
 
 ```
@@ -31,7 +35,11 @@ That's right!
 
 I then proceeded to conduct a quick scan of the twitter page. Looked through his tweets, followers (in case 'The Enemy' was following), lists, media, likes, etc. The only thing of note was this one tweet
 
+![tweet](/images/tweet.png)
+
 This suggests looking at his deleted tweets may be of use to us. To WayBackMachine we go! Viewing the page archived on August 20, and we've found the deleted tweet in question.
+
+![tweet2](/images/deletedtweet.png)
 
 ### B. GitHub
 The user's github account: https://github.com/spyduhman
@@ -44,6 +52,8 @@ That's right!
 ```
 The github has one repository for a Chat App. A brief look through the files provides no result, so the next step is always to check the commit history. There we find a log.txt file was deleted from the repository.
 
+<img src="https://github.com/adalum/CSAW2022-OSINT/blob/main/images/gitdel.png"  width="300" height="200">
+
 ```
 3. What is the full name of the file that contains communications between The Enemy and the Evil Spy?
 Please enter your answer:
@@ -52,13 +62,15 @@ That's right!
 ```
 
 ### C. Bankers' reMorse
-Accessing the link in log.txt leads to an Assignment.wav file, which contains intermittent beeping noise. Morse code. Put it through an audio to text morse code decoder (https://morsecode.world/international/decoder/audio-decoder-adaptive.html).
+Accessing the link (http://bit.ly/evilevilinfo) in log.txt leads to an [Assignment.wav](Assignment.wav) file, which contains intermittent beeping noise. Morse code. Put it through an audio to text morse code decoder (https://morsecode.world/international/decoder/audio-decoder-adaptive.html).
 
 ```
-HELLO EVIL AGENT YOUR NEXT TARGET IS A BANK THE BANK'S BIN NUMBER IS 452234 THE TARGETS SWIFT CODE IS YOUR PASSWORD FOR MORE INSTRUCTIONS VISIT BIT.LY SLASH OSINTSEC GOOD LUCK
+HELLO EVIL AGENT YOUR NEXT TARGET IS A BANK THE BANK'S BIN NUMBER IS 452234 
+THE TARGETS SWIFT CODE IS YOUR PASSWORD FOR MORE INSTRUCTIONS VISIT BIT.LY SLASH OSINTSEC 
+GOOD LUCK
 ```
 
-The first part of the message gives us a bank BIN number, while the second leads us to a link (bit.ly/osintsec), which is a password-protected pdf file. The message clue suggests the 'Swift code' for the target is the password we need to unlock this pdf file. 
+The first part of the message gives us a bank BIN number, while the second leads us to a link (http://bit.ly/osintsec), which is a password-protected [pdf file](YoureSoClose.pdf). The message clue suggests the 'Swift code' for the target is the password we need to unlock this pdf file. 
 
 #### C-1. trash BIN
 First, find the bank via its BIN number. ```BIN```, or Bank Identification Number, is a 4-6 digit bank code that identifies the credit/debit card issuer (i.e. the bank). 
@@ -85,7 +97,11 @@ That's right!
 ```
 
 ### D. is for pDf
-We can now successfully unlock the pdf. It's an image of a flood. At this point, I was rather perplexed. The next question on the terminal was:
+We can now successfully unlock the [pdf](YoureSoClose.pdf).
+
+<img src="https://github.com/adalum/CSAW2022-OSINT/blob/main/images/pdf.png"  width="200" height="300">
+
+It's an image of some sort of seaside resort that may or may not be flooding. At this point, I was rather perplexed. The next question on the terminal was:
 
 ```
 6. What is a crime?
@@ -93,6 +109,8 @@ What is the answer? Hint: it is two words
 ```
 
 Starting floods? Natural disasters? What could this be? And then I noticed the title of the document, which was revealed now that it had been unlocked. 
+
+![cpyright](/images/copyrightinfringement.png)
 
 <em>Wow, I really am blind.</em>
 
